@@ -9,7 +9,8 @@ public class PlayerRolls {
     public static int calcD4() {
         try {
             return ThreadLocalRandom.current().nextInt(1 , 5);
-        }catch(Exception e) {
+        }catch(IllegalArgumentException e) {
+            //Sets error to the stack trace, which will be printed to crash_dump.txt
             EnemyRolls.setErr(e.getStackTrace().toString());
         }
         return -1;
@@ -18,7 +19,7 @@ public class PlayerRolls {
     public static int calcD6() {
         try {
             return ThreadLocalRandom.current().nextInt(1 , 7);
-        }catch(Exception e) {
+        }catch(IllegalArgumentException e) {
             EnemyRolls.setErr(e.getStackTrace().toString());
         }
         return -1;
@@ -27,7 +28,7 @@ public class PlayerRolls {
     public static int calcD8() {
         try {
             return ThreadLocalRandom.current().nextInt(1 , 9);
-        }catch(Exception e) {
+        }catch(IllegalArgumentException e) {
             EnemyRolls.setErr(e.getStackTrace().toString());
         }
         return -1;
@@ -36,7 +37,7 @@ public class PlayerRolls {
     public static int calcD10() {
         try {
             return ThreadLocalRandom.current().nextInt(1 , 11);
-        }catch(Exception e) {
+        }catch(IllegalArgumentException e) {
             EnemyRolls.setErr(e.getStackTrace().toString());
         }
         return -1;
@@ -45,7 +46,7 @@ public class PlayerRolls {
     public static int calcD20() {
         try {
             return ThreadLocalRandom.current().nextInt(1 , 21);
-        }catch(Exception e) {
+        }catch(IllegalArgumentException e) {
             EnemyRolls.setErr(e.getStackTrace().toString());
         }
         return -1;
