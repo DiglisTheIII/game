@@ -6,6 +6,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/*
+ * Almost all panels in this menu work almost the exact same, but
+ * once I can figure out layouts I will update this.
+ */
 
 public class MainPanel extends JPanel {
     
