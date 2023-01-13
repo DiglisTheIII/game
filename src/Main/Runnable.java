@@ -19,5 +19,6 @@ public class Runnable {
         
         new MainMenu(Integer.valueOf(MainMenu.getResolution(new File("./src/Game/settings.txt")).get(1)), 
             Integer.valueOf(MainMenu.getResolution(new File("./src/Game/settings.txt")).get(0)));
+
     }
 }

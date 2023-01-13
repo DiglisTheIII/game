@@ -5,16 +5,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.Window;
+
 import Main.MainMenu.MainMenu;
 import Main.MainMenu.SubMenus.MainPanel;
 import Main.MainMenu.SubMenus.SettingsMenus.Settings;
 import Main.MainMenu.SubMenus.SettingsMenus.SettingsSub.Display;
+import Script.Game.Intro.CreateChar;
+import Script.Game.Intro.CreateCharMenu;
 
 
 public class MainMenu extends JFrame {
@@ -51,25 +57,28 @@ public class MainMenu extends JFrame {
 
     public MainMenu(int height, int width) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double scrWidth = screenSize.getWidth();
-        double scrHeight = screenSize.getHeight();
+        int scrWidth = (int) screenSize.getWidth();
+        int scrHeight = (int) screenSize.getHeight();
         JFrame frame = new JFrame("Jaathran");
         MainPanel main = new MainPanel(frame);
         Settings settings = new Settings(frame);
         Display display = new Display(frame);
+        CreateCharMenu charScr = new CreateCharMenu();
         frame.add(main);
         //Corrects if chosen resolution is larger than actual screen
-        if(height > (int) scrHeight || width > (int) scrWidth) {
+        if(height > scrHeight || width > scrWidth) {
             System.out.println("Screen is too small");
-            frame.setSize((int) (scrWidth / 2), (int) (scrHeight / 2));
-        } else if(height < (int) scrHeight && width < (int) scrWidth) {
+            frame.setSize((scrWidth / 2), (scrHeight / 2));
+        } else if(height < scrHeight && width < scrWidth) {
             System.out.println("Screen resized properly");
             frame.setSize(width, height);
         }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         main.play.addActionListener(e -> {
-
+            main.setVisible(false);
+            charScr.setVisible(true);
+            frame.add(charScr);
         });
         
 
@@ -91,6 +100,7 @@ public class MainMenu extends JFrame {
 
         settings.display.addActionListener(e -> {
             settings.setVisible(false);
+            display.setVisible(true);
             frame.add(display);
         });
 
@@ -103,51 +113,14 @@ public class MainMenu extends JFrame {
             main.setVisible(true);
         });
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public JFrame mainMenu(int height, int width) {      
-        JFrame frame = new JFrame("Jaathran");
-        MainPanel main = new MainPanel(frame);
-        Settings settings = new Settings(frame);
-        Display display = new Display(frame);
-        frame.add(main);
-        frame.setSize(800, 640);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        main.play.addActionListener(e -> {
-
-        });
-
-        main.settings.addActionListener(ActionEvent -> {
-            main.setVisible(false);
+        display.exit.addActionListener(e -> {
+            display.setVisible(false);
             settings.setVisible(true);
             frame.add(settings);
-        });
-
-        main.exit.addActionListener(e -> {
-            System.exit(1);
-        });
-
-        settings.display.addActionListener(e -> {
-            settings.setVisible(false);
-            frame.add(display);
-        });
-
-        settings.gameplay.addActionListener(e -> {
-
-        });
-
-        settings.back.addActionListener(e -> {
-            settings.setVisible(false);
-            main.setVisible(true);
+            System.out.println("h");
         });
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-        return frame;
     }
-
 }

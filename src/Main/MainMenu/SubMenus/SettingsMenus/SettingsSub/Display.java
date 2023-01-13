@@ -5,6 +5,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -18,6 +21,9 @@ import java.io.PrintWriter;
 
 public class Display extends JPanel {
     String selection = "";
+
+    public JButton exit;
+
     public Display(JFrame frame) {
         //Array of all resolutions supported by Windows 10
         String[] resolutionList = { 
@@ -68,7 +74,22 @@ public class Display extends JPanel {
             }
         });
 
-        this.setVisible(true);
+        exit = new JButton("Exit");
+        
+        setLayout(new GridBagLayout());
+
+        exit = new JButton("Exit");
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        gbc.gridy = 1;
+        this.add(exit, gbc);
+
+        //this.setVisible(true);
     }
 
     void writeResolutionToSettings(int height, int width) throws IOException {
@@ -117,6 +138,8 @@ public class Display extends JPanel {
                 pw.close();
                 reader.close();
 
+                //Rewrites the selected resolution to the file, then the MainPanel.java pulls from that
+
                 writer.write(String.valueOf(height) + "\n");
                 writer.write(String.valueOf(width));
                 writer.close();
@@ -124,5 +147,5 @@ public class Display extends JPanel {
                 e.printStackTrace();
             }
         }
-    }
+    }  
 }
