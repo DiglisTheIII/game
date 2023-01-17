@@ -68,7 +68,7 @@ public class MainMenu extends JFrame {
         //Corrects if chosen resolution is larger than actual screen
         if(height > scrHeight || width > scrWidth) {
             System.out.println("Screen is too small");
-            frame.setSize((scrWidth / 2), (scrHeight / 2));
+            frame.setSize(240, 320);
         } else if(height < scrHeight && width < scrWidth) {
             System.out.println("Screen resized properly");
             frame.setSize(width, height);
