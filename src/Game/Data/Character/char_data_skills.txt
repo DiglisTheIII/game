@@ -1,0 +1,7 @@
+21     :str
+18     :dex
+21     :con
+36     :intl
+24     :wisdom
+27     :char
+COckass

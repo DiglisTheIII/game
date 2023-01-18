@@ -3,6 +3,7 @@ package Main;
 import java.io.File;
 
 import Main.MainMenu.MainMenu;
+import Script.Game.Intro.CharChr;
 
 public class Runnable {
     

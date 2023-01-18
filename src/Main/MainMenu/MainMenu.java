@@ -9,23 +9,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.Window;
 
 import Main.MainMenu.MainMenu;
 import Main.MainMenu.SubMenus.MainPanel;
 import Main.MainMenu.SubMenus.SettingsMenus.Settings;
 import Main.MainMenu.SubMenus.SettingsMenus.SettingsSub.Display;
-import Script.Game.Intro.CreateChar;
-import Script.Game.Intro.CreateCharMenu;
+import Script.Game.Intro.CharChr;
 
 
 public class MainMenu extends JFrame {
     
-    static File res = new File("./src/Game/settings.txt");
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	static File res = new File("./src/Game/settings.txt");
 
     public static ArrayList<String> getResolution(File f) {
         f = MainMenu.res;
@@ -63,7 +67,8 @@ public class MainMenu extends JFrame {
         MainPanel main = new MainPanel(frame);
         Settings settings = new Settings(frame);
         Display display = new Display(frame);
-        CreateCharMenu charScr = new CreateCharMenu();
+        CharChr chr = new CharChr();
+        chr.next.setEnabled(false);
         frame.add(main);
         //Corrects if chosen resolution is larger than actual screen
         if(height > scrHeight || width > scrWidth) {
@@ -73,54 +78,53 @@ public class MainMenu extends JFrame {
             System.out.println("Screen resized properly");
             frame.setSize(width, height);
         }
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        main.play.addActionListener(e -> {
-            main.setVisible(false);
-            charScr.setVisible(true);
-            frame.add(charScr);
-        });
         
-
-        /*
-         * A little workaround I wrote to get around using CardLayout.
-         * While I know CardLayout is likely 100x more efficient, 
-         * it felt like such a hassle to get it to work, and I will use it for the 
-         * actual in-game scene transitions. Main menu shouldn't matter.
-         */
-        main.settings.addActionListener(ActionEvent -> {
-            main.setVisible(false);
-            settings.setVisible(true);
-            frame.add(settings);
-        });
-
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        setActionListener(main.play, (JPanel) main, (JPanel) chr, frame);
+        
+        setActionListener(main.settings, (JPanel) main, (JPanel) settings, frame);
+       
+        setActionListener(settings.display, (JPanel) settings, (JPanel) display, frame);
+        
+        setActionListener(settings.back, (JPanel) settings, (JPanel) main, frame);
+        
+        setActionListener(display.exit, (JPanel) display, (JPanel) settings, frame);
+        
+        setActionListener(chr.back, (JPanel) chr, (JPanel) main, frame);
+        
         main.exit.addActionListener(e -> {
             System.exit(1);
         });
-
-        settings.display.addActionListener(e -> {
-            settings.setVisible(false);
-            display.setVisible(true);
-            frame.add(display);
+        
+        chr.next.addActionListener(e -> {
+        	if(chr.nameField.getText().length() > 0) {
+        		try {
+    				chr.printSkillsToFile(chr.nameField.getText());
+    				chr.reroll.setEnabled(false);
+    			} catch (IOException e1) {
+    				// TODO Auto-generated catch block
+    				e1.printStackTrace();
+    			}
+        	} else {
+        		chr.nameField.setText("Invalid Length");
+        	}
         });
-
-        settings.gameplay.addActionListener(e -> {
-
-        });
-
-        settings.back.addActionListener(e -> {
-            settings.setVisible(false);
-            main.setVisible(true);
-        });
-
-        display.exit.addActionListener(e -> {
-            display.setVisible(false);
-            settings.setVisible(true);
-            frame.add(settings);
-            System.out.println("h");
-        });
-
+   
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+    
+    
+    /*
+     * Presets buttons to switch between pages. Upcasting is 
+     * required by JPanel child classes
+     */
+    public void setActionListener(JButton button, JPanel disable, JPanel enable, JFrame frame) {
+    	button.addActionListener(e -> {
+    		disable.setVisible(false);
+    		enable.setVisible(true);
+    		frame.add(enable);
+    	});
     }
 }
