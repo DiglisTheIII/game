@@ -28,7 +28,7 @@ public class CharChr extends JPanel {
 	public CharChr() {
 		/*
 		 * Most of this is just boilerplate code, 
-		 * just settings up the user environment before
+		 * just sets up the user environment before
 		 * any events are triggered.
 		 */
 		
