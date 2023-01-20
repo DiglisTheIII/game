@@ -22,13 +22,11 @@ import Main.MainMenu.MainMenu;
 import Main.MainMenu.SubMenus.MainPanel;
 import Main.MainMenu.SubMenus.SettingsMenus.Settings;
 import Main.MainMenu.SubMenus.SettingsMenus.SettingsSub.Display;
-<<<<<<< HEAD
 import Main.MainMenu.SubMenus.SettingsMenus.SettingsSub.Gameplay.Gameplay;
 import Script.Game.Intro.CharChr;
 import Script.Game.Intro.CharClassSetup;
 
 public class MainMenu extends JFrame {
-=======
 import Script.Game.Intro.CharChr;
 
 
@@ -38,8 +36,7 @@ public class MainMenu extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static File res = new File("./src/Game/settings.txt");
->>>>>>> 62c60336af148deae6e369c9167c3133432808ee
+	static File res = new File("./src/Game/settings.txt");                  
 
 	/**
 	 * 
@@ -66,7 +63,6 @@ public class MainMenu extends JFrame {
 			ex.printStackTrace();
 		}
 
-<<<<<<< HEAD
 		// TODO Delete when finished
 		for (String s : dims) {
 			System.out.println(s);
@@ -186,7 +182,6 @@ public class MainMenu extends JFrame {
 			frame.add(enable);
 		});
 	}
-=======
         //TODO Delete when finished
         for(String s : dims) {
             System.out.println(s);
@@ -264,5 +259,4 @@ public class MainMenu extends JFrame {
     		frame.add(enable);
     	});
     }
->>>>>>> 62c60336af148deae6e369c9167c3133432808ee
 }
