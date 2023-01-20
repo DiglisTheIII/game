@@ -1,7 +1,6 @@
 package Script.Game.Intro;
 
 import javax.swing.JPanel;
-<<<<<<< HEAD
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -11,13 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import javax.swing.JButton;
-=======
->>>>>>> 62c60336af148deae6e369c9167c3133432808ee
 
 public class CharClassSetup extends JPanel {
 
 	/**
-<<<<<<< HEAD
 	 * 
 	 */
 
@@ -198,12 +194,4 @@ public class CharClassSetup extends JPanel {
 	public String getCharName() throws IOException {
 		return Files.readAllLines(Paths.get("./src/Game/Data/Character/char_data_skills.txt")).get(6);
 	}
-=======
-	 * Create the panel.
-	 */
-	public CharClassSetup() {
-
-	}
-
->>>>>>> 62c60336af148deae6e369c9167c3133432808ee
 }
