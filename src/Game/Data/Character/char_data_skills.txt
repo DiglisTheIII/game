@@ -1,0 +1,7 @@
+29		  :str
+12        :dex
+31		  :con
+9        :intl
+12        :wisdom
+6        :char
+asdf
