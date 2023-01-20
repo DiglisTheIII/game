@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 29		  :str
 12        :dex
 31		  :con
@@ -5,3 +6,12 @@
 12        :wisdom
 6        :char
 asdf
+=======
+21     :str
+18     :dex
+21     :con
+36     :intl
+24     :wisdom
+27     :char
+COckass
+>>>>>>> 62c60336af148deae6e369c9167c3133432808ee

@@ -5,7 +5,10 @@ import java.io.IOException;
 
 import Main.MainMenu.MainMenu;
 import Script.Game.Intro.CharChr;
+<<<<<<< HEAD
 import Script.Game.Intro.CharClassSetup;
+=======
+>>>>>>> 62c60336af148deae6e369c9167c3133432808ee
 
 public class Runnable {
     
